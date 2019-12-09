@@ -1,5 +1,8 @@
 from flask import Flask, request
 import requests
+from dataParser import data_parser
+
+
 # tells whether we have received the access token or not
 INITIATED = False
 
@@ -42,6 +45,10 @@ def fire_Access_Request( applicationName , clientID , client_secrete ):
 
 app  = Flask(__name__)
 
+@app.route("/")
+def welcome():
+    return "go to /middleware/help"
+
 @app.route("/middleware")
 def init():
     APPICATION_NAME  = request.args.get('application_Name')
@@ -52,9 +59,7 @@ def init():
     INITIATED = True
     return (ACCESS_TOKEN)
 
-@app.route("/")
-def welcome():
-    return "go to /middleware/help"
+
 
 @app.route("/middleware/help")
 def help():
@@ -63,7 +68,7 @@ def help():
            "with query parameter as application_Name , 'client_ID' ,'client_secrete' </p>"\
            "<p> fr OU related information :  http://DOMAIN_NAME:5000//middleware/OU"\
            "with query parameter as OuType , application_Name , 'client_ID' ,'client_secrete' </p>"\
-           .format("<your domain name>", "<your domain name>")\
+           .format("your domain name", "your domain name")\
 
 
 @app.route("/middleware/OU")
@@ -89,15 +94,9 @@ def getOU():
     print(output.status_code)
 
     if(output.status_code==200):
-        return output.content
+        return data_parser(output)
     else:
         return "No , it did not work"
-
-
-
-
-
-
 
 
 # application start
