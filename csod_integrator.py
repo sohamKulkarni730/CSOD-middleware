@@ -75,8 +75,11 @@ def help():
 def getOU():
     if INITIATED == False:
         ACCESS_TOKEN = init()
-
-    url =  "https://servicelearn12.csod.com/services/api/OrgUnits/OU"
+   
+    #Dynamically generating the url 
+    application_name = request.args.get ("application_Name")
+    url =  "https://"+application_name+".csod.com/services/api/OrgUnits/OU"
+    print(url)
 
 
 
