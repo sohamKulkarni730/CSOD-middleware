@@ -27,8 +27,7 @@ def fire_Access_Request( applicationName , clientID , client_secrete ):
     header["Content-Type"] = "application/json"
     header["cache-control"] = "no-cache"
 
-    # "clientId": "dbq2kjiql2c4",
-    # "clientSecret": "l4nqwza+7RbK0rrzs16VMeH+5dWEsFjsRSXtQ0MwL+TSSWvZGliUkgUfIenAk0+1Yx0yPtTs+bSmlotR2KCVGA==",
+    
     # "grantType": "client_credentials",
     # "scope": "all"
     body = {}
